@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rivets/0.9.6/rivets.bundled.min.js"></script>
+</head>
+
+<body>
+
+
+    <div id="app">
+        <div class="repo" rv-each-repo="filteredRepos" rv-class-expanded="repo.isExpanded">
+            <div class="repo-name" rv-on-click="toggleRepo | args repo">
+                repo: { repo.author } / { repo.name }
+            </div>
+
+            <div class="repo-btns" rv-if="repo.isExpanded">
+                <span class="tag" rv-each-tag="repo.tags">
+                    { tag }
+                    <button class="btn-delete-tag" rv-on-click="deleteTag | args repo tag">&times;</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        (() => {
+            class PageController {
+                constructor() {
+                    this.setRepos = (repos) => {
+                        this.filteredRepos = repos
+                    }
+
+                    this.sortBy = 'name'
+                    this.selectedFilter = 'all'
+                    this.textFilter = ''
+                    this.setRepos([])
+                }
+            }
+
+
+            // instantiate model and bind it to #app element
+            let scope = new PageController()
+            rivets.bind(document.getElementById('app'), scope)
+
+            // let's set up some data after 2 seconds to show dynamic binding
+            setTimeout(() => {
+                scope.setRepos([{
+                        name: "xstream",
+                        "author": "staltz",
+                        tags: ["web", "reactive", "rxjs", "stream", "observables", "cyclejs"]
+                    },
+                    {
+                        name: "github-star-tagger-chrome",
+                        author: "Namek",
+                        tags: ["chrome", "extension", "github", "stars"]
+                    },
+                    {
+                        name: "rivets",
+                        author: "mikeric",
+                        tags: ["web", "binding", "javascript"]
+                    }
+                ])
+            }, 2000)
+
+            setTimeout(() => {
+                scope.setRepos([{
+                        name: "123",
+                        "author": "123",
+                        tags: ["web"]
+                    },
+                ])
+            }, 4000)
+        })()
+    </script>
+
+
+</body>
+
+</html>
