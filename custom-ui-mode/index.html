@@ -12,12 +12,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
-    <!-- Slyce Web SDK V2 imports -->
-    <script type="text/javascript" src="https://cdn.slyce.it/websdk/v2/slyce.sdk.gz.js"></script>
-    <!-- Adding the CSS file is optional if you don't want to use the "UI Mode" -->
-    <link rel="stylesheet" href="https://cdn.slyce.it/websdk/v2/slyce.ui.css">
-    <!-- END Slyce Web SDK V2 imports -->
-
     <link rel="stylesheet" href="./styles.css">
 </head>
 
@@ -59,6 +53,11 @@
 
         <div id="results" class="container">
             <div class="row">
+                <div class="col text-center">
+                    <img id="source-image" class="w-50 mb-5 rounded" rv-src="imageSrc" alt="Source image">
+                </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <h3 class="text-center mb-5" rv-show="showResults">{results | length} results found</h3>
                 </div>
@@ -70,15 +69,37 @@
             </div>
             <div class="row">
                 <div id="result-items" class="col-6 animated flipInx" rv-each-item="results">
-                    <a rv-href="item.Product_URL">
-                        <img class="w-100 rounded mb-3" rv-src="item.Product_Image_URL" alt="Product_name">
-                        <h6 class="text-center mb-4 text-secondary">{item.Product_name}</h6>
+                    <a rv-href="item.link">
+                        <img class="w-100 rounded mb-3" rv-src="item.image_link" alt="brand">
+                        <h6 class="text-center mb-4 text-secondary">{item.brand}</h6>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
+    <div id="loading-overlay">
+        <div class="slyce-sk-fading-circle">
+            <div class="slyce-sk-circle1 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle2 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle3 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle4 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle5 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle6 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle7 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle8 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle9 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle10 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle11 slyce-sk-circle"></div>
+            <div class="slyce-sk-circle12 slyce-sk-circle"></div>
+        </div>
+        <button class="btn btn-danger" rv-on-click="cancelExecution" id="cancel-workflow-execution">X</button>
+    </div>
+    
+    <!-- Slyce Web SDK V2 imports -->
+    <script type="text/javascript" src="http://localhost:8084/dist/slyce.sdk.js"></script>
+    <!-- END Slyce Web SDK V2 imports -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rivets/0.9.6/rivets.bundled.min.js"></script>
     <script src="./script.js"></script>
 </body>
