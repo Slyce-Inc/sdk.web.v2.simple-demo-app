@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 
-<body>
+<body id="wrapper">
     <header class="pt-5 text-center animated fadeIn">
         <img class="rounded-circle img100x100" src="https://pbs.twimg.com/profile_images/955460145814925312/hJG4yBSD_400x400.jpg"
             alt="Slyce Logo">
@@ -29,23 +29,22 @@
                     
                     <div class="d-flex justify-content-center">
                         <div class="text-center mx-3">
-                            <button id="image-source-button" type="button" class="btn btn-primary d-inline-flex p-3 rounded-circle animated fadeIn">
+                            <div id="image-source-button" class="btn btn-primary d-inline-flex p-3 rounded-circle animated fadeIn">
                                 <i id="photo-icon" class="material-icons">camera_alt</i>
+                                <!-- type="file" accept="image/*" capture - using these tags would make mobile Chrome and Safari trigger native camera in photo mode -->
                                 <input class="image-source-input" type="file" accept="image/*" capture />
-                            </button>
+                            </div>
                         </div>
 
                         <div class="text-center mx-3">
-                            <button id="image-source-button" type="button" class="btn btn-primary d-inline-flex p-3 rounded-circle animated fadeIn">
+                            <div id="image-source-button" class="btn btn-primary d-inline-flex p-3 rounded-circle animated fadeIn">
                                 <i id="photo-icon" class="material-icons">image</i>
+                                <!-- type="file" accept="image/*" - using these tags would make mobile Chrome open photo library, although IOS Safari would prompt to choose between making a photo or picking an existing picture -->
                                 <input class="image-source-input" type="file" accept="image/*"/>
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                
             </div>
         </div>
 
@@ -59,15 +58,18 @@
             </div>
             <div class="row">
                 <div class="col">
+                    <!-- Show here how many results were found -->
                     <h3 class="text-center mb-5" rv-show="showResults">{results | length} results found</h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
+                    <!-- Loop throug errors array and display each occurence in an h6 -->
                     <h6 rv-each-error="errors" class="text-danger text-center">{error}</h6>
                 </div>
             </div>
             <div class="row">
+                <!-- Loop through results array and render each item found -->
                 <div id="result-items" class="col-6 animated flipInx" rv-each-item="results">
                     <a rv-href="item.link">
                         <img class="w-100 rounded mb-3" rv-src="item.image_link" alt="Result image">
@@ -77,8 +79,12 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Loading overlay hidden by default. It would be activated in script.js -->
     <div id="loading-overlay">
+        <h4 id="loading-overlay-status" class="text-center">
+            {loadingStatus}
+        </h4>
         <div class="slyce-sk-fading-circle">
             <div class="slyce-sk-circle1 slyce-sk-circle"></div>
             <div class="slyce-sk-circle2 slyce-sk-circle"></div>
@@ -93,7 +99,15 @@
             <div class="slyce-sk-circle11 slyce-sk-circle"></div>
             <div class="slyce-sk-circle12 slyce-sk-circle"></div>
         </div>
-        <button class="btn btn-danger" rv-on-click="cancelExecution" id="cancel-workflow-execution">X</button>
+        <!-- Button to call cancelExecution on click -->
+        <button class="btn btn-danger d-inline-flex p-1" rv-on-click="cancelExecution" id="cancel-workflow-execution">
+            <i class="material-icons">close</i>
+        </button>
+
+        <!-- Display tags found during execution -->
+        <div id="loading-overlay-tags" class="text-center">
+            <span class="badge badge-primary p-1 mx-1" rv-each-tag="tags">{tag}</span>
+        </div>
     </div>
     
     <!-- Slyce Web SDK V2 imports -->

@@ -50,12 +50,25 @@ body {
     position: absolute;
     right: 10px;
     top: 10px;
-    font-size: 30px;
     color: #fff;
-    background-color: 
+    font-size: 30px;
 }
 
+#loading-overlay-status {
+  color: #fff;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  margin-top: -150px;
+}
 
+#loading-overlay-tags {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 150px;
+}
 
 .slyce-sk-fading-circle {
     width: 120px;
