@@ -18,7 +18,7 @@
         showResults: false
     }
     // Bind the object to the page
-    rivets.bind($('#wrapper'), viewModel);
+    rivets.bind(document.getElementById('wrapper'), viewModel);
 
     // Loop through the input elements and bind event handlers
     imageInputs.forEach((imageInput) => {
@@ -28,7 +28,7 @@
             
             if (imageFile) {
                 resetViewModel();
-                
+
                 // Execute the worflow using the image File, and WorkflowId (in this case Universal Workflow)
                 slyce.executeWorkflow(imageFile, '8qHmYrvaaVyUyWQMifN2o8', {
                     // This is going to be fired each time the task was updated

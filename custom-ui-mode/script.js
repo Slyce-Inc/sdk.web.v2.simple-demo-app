@@ -28,7 +28,7 @@
         }
     }
     // Bind the object to the page
-    rivets.bind($('#wrapper'), viewModel);
+    rivets.bind(document.getElementById('wrapper'), viewModel);
 
     // Loop through the input elements and bind event handlers
     imageInputs.forEach((imageInput) => {
