@@ -1,3 +1,7 @@
+body {
+    position: relative;
+}
+
 .img100x100 {
     height: 100px;
     width: 100px;
@@ -23,3 +27,8 @@
     opacity: 0;
     cursor: pointer;
 }
+
+#source-image {
+    display: none;
+}
+
