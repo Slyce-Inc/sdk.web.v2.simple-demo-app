@@ -69,7 +69,8 @@
             </div>
             <div class="row">
                 <!-- Loop through results array and render each item found -->
-                <div id="result-items" class="col-6 animated flipInx" rv-each-item="results">
+                <!-- Please note that items in your dataset may not have "link", "image_link" and "brand" fields that are used below -->
+                <div class="col-6 animated flipInx" rv-each-item="results">
                     <a rv-href="item.link">
                         <img class="w-100 rounded mb-3" rv-src="item.image_link" alt="Result image">
                         <h6 class="text-center mb-4 text-secondary">{item.brand}</h6>
