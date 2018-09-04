@@ -94,5 +94,6 @@
         viewModel.showResults = false;
         viewModel.imageSrc = null;
         sourceImage.style.display = 'none';
+        loadingOverlay.style.backgroundImage = 'none';
     }
 })();
