@@ -71,10 +71,14 @@
                 <!-- Loop through results array and render each item found -->
                 <!-- Please note that items in your dataset may not have "link", "image_link" and "brand" fields that are used below -->
                 <div class="col-6 animated flipInx" rv-each-item="results">
-                    <a rv-href="item.link">
-                        <img class="w-100 rounded mb-3" rv-src="item.image_link" alt="Result image">
-                        <h6 class="text-center mb-4 text-secondary">{item.brand}</h6>
-                    </a>
+                    <div class="mb-5 text-center">
+                        <a rv-href="item.link">
+                            <img class="w-100 rounded mb-3" rv-src="item.image_link" alt="Result image">
+                            <h6 class="mb-4 text-secondary">Item: {item.ItemId} - {item.brand}</h6>
+                        </a>
+                        <!-- Clicking this button would trigger findSimilar function -->
+                        <button type="button" rv-on-click="findSimilar" class="btn btn-primary">Find Similar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,7 +115,7 @@
     </div>
     
     <!-- Slyce Web SDK V2 imports -->
-    <script type="text/javascript" src="https://cdn.slyce.it/websdk/v2.1.0/slyce.sdk.gz.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8084/dist/slyce.sdk.js"></script>
     <!-- END Slyce Web SDK V2 imports -->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rivets/0.9.6/rivets.bundled.min.js"></script>
