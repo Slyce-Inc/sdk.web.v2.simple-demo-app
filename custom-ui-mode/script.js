@@ -37,7 +37,8 @@
                 .then(response => {
                     console.log(response.results[0].items);
                     viewModel.results = response.results[0].items;
-                });
+                })
+                .catch(e => console.error(e));
         }
     }
     // Bind the object to the page
