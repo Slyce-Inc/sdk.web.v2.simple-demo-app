@@ -13,7 +13,7 @@
 
     <!-- Slyce Web SDK V2 imports -->
     <!-- Adding the CSS file is optional if you don't want to use the "UI Mode" -->
-    <link rel="stylesheet" href="https://cdn.slyce.it/websdk/v2.1.0/slyce.ui.css">
+    <link rel="stylesheet" href="https://cdn.slyce.it/websdk/v2.x/slyce.ui.css">
     <!-- END Slyce Web SDK V2 imports -->
 
     <link rel="stylesheet" href="./styles.css">
@@ -56,6 +56,11 @@
 
         <div id="results" class="container">
             <div class="row">
+                <div class="col text-center">
+                    <img id="source-image" class="w-50 mb-5 rounded" rv-src="imageSrc" alt="Source image">
+                </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <!-- Show here how many results were found -->
                     <h3 class="text-center mb-5" rv-show="showResults">{results | length} results found</h3>
@@ -85,7 +90,7 @@
     </div>
     
     <!-- Slyce Web SDK V2 imports -->
-    <script type="text/javascript" src="https://cdn.slyce.it/websdk/v2.1.0/slyce.sdk.gz.js"></script>
+    <script type="text/javascript" src="https://cdn.slyce.it/websdk/v2.x/slyce.sdk.gz.js"></script>
     <!-- END Slyce Web SDK V2 imports -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rivets/0.9.6/rivets.bundled.min.js"></script>
     <script src="./script.js"></script>
