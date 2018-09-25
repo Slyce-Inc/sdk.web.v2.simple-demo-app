@@ -21,10 +21,24 @@
         showResults: false,
         imageSrc: null,
         loadingStatus: null,
-        cancelExecution: function(e) {
+        cancelExecution: function() {
             slyce.cancelWorkflowExecution();
             loadingOverlay.style.display = 'none';
             resetViewModel();
+        },
+        // rivets would pass event and reference to the clicked item
+        findSimilar: function(e, binding) {
+            // findSimilar accepts dataset ID against which the search should happen
+            // the 2nd argument should be item ID, although it can be null
+            // the 3rd argument is optional, but if you didn't pass the item ID the 3rd argument should be the item image URL
+            // so thus either item ID or item image URL should be passed, or both
+            // the 4th argument is optional. It's the settings obj. Please check the docs for reference
+            slyce.findSimilar('JKu34SQSxP5PWkaUMXE5w7', binding.item.id, binding.item.image_link, {})
+                .then(response => {
+                    console.log(response.results[0].items);
+                    viewModel.results = response.results[0].items;
+                })
+                .catch(e => console.error(e));
         }
     }
     // Bind the object to the page
