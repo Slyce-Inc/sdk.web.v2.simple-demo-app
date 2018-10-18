@@ -62,6 +62,14 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col text-center">
+                    <!-- Sends all analytics events that SDK has captured since last events dispatch (which happens every 30s) -->
+                    <!-- It's useful to send analytics events manually when you're about to redirect the user to another page -->
+                    <!-- or the user is about to leave the page, so none of events gets lost -->
+                    <button type="button" rv-on-click="dispatchAnalyticsEvents" class="btn btn-primary mb-5">Dispatch Analytics</button>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <!-- Loop throug errors array and display each occurence in an h6 -->
                     <h6 rv-each-error="errors" class="text-danger text-center">{error}</h6>
@@ -115,7 +123,7 @@
     </div>
     
     <!-- Slyce Web SDK V2 imports -->
-    <script type="text/javascript" src="https://cdn.slyce.it/websdk/v2.1.0/slyce.sdk.gz.js"></script>
+    <script type="text/javascript" src="https://cdn.slyce.it/websdk/v2.x/slyce.sdk.gz.js"></script>
     <!-- END Slyce Web SDK V2 imports -->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rivets/0.9.6/rivets.bundled.min.js"></script>

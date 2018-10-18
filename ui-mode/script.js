@@ -29,6 +29,13 @@
                     viewModel.results = response.results[0].items;
                 })
                 .catch(e => console.error(e));
+        },
+        dispatchAnalyticsEvents: function() {
+            slyce.dispatchAnalyticsEvents()
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch(e => console.error(e));
         }
     }
     // Bind the object to the page
