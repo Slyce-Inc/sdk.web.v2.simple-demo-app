@@ -30,6 +30,9 @@
                 })
                 .catch(e => console.error(e));
         },
+        // Sends all analytics events that SDK has captured since last events dispatch (which happens every 30s) 
+        // It's useful to send analytics events manually when you're about to redirect the user to another page 
+        // or the user is about to leave the page, so none of events gets lost 
         dispatchAnalyticsEvents: function() {
             slyce.dispatchAnalyticsEvents()
                 .then((response) => {
