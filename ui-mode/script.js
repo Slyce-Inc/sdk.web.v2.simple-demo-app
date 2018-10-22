@@ -1,6 +1,7 @@
 (() => {
     // get references to each image input
     const imageInputs = document.querySelectorAll('.image-source-input');
+    const sourceImage = document.querySelector('#source-image');
 
     // Initialize the Slyce SDK
     const slyce = new slyceSDK();
@@ -15,6 +16,7 @@
     let viewModel = {
         errors: [],
         results: [],
+        imageSrc: null,
         showResults: false,
         // rivets would pass event and reference to the clicked item
         findSimilar: function(e, binding) {
@@ -61,6 +63,14 @@
                             console.log('items: ', message.results[0].items);
                             viewModel.results = message.results[0].items;
                         }
+                    },
+                    // This is going to be fired after the SDK processed the File object, rotated the image if needed and image base64 became available
+                    // So image can be displayed on the page
+                    afterImageProcessed: (base64) => {
+                        // update source image src attribute with base64
+                        viewModel.imageSrc = base64;
+                        // show the source image in the results page
+                        sourceImage.style.display = 'inline-block';
                     }
                 }, true);     
             } else {
@@ -74,6 +84,8 @@
         viewModel.results = [];
         viewModel.errors = [];
         viewModel.showResults = false;
+        viewModel.imageSrc = null;
+        sourceImage.style.display = 'none';
     }
 })();
 
