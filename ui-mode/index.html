@@ -67,6 +67,12 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col text-center">
+                    <!-- Click to dispatch analytics events -->
+                    <button type="button" rv-on-click="dispatchAnalyticsEvents" class="btn btn-primary mb-5">Dispatch Analytics</button>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <!-- Loop throug errors array and display each occurence in an h6 -->
                     <h6 rv-each-error="errors" class="text-danger text-center">{error}</h6>
