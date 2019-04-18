@@ -20,15 +20,13 @@
         showResults: false,
         // rivets would pass event and reference to the clicked item
         findSimilar: function(e, binding) {
-            // findSimilar accepts dataset ID against which the search should happen
-            // the 2nd argument should be item ID, although it can be null
-            // the 3rd argument is optional, but if you didn't pass the item ID the 3rd argument should be the item image URL
-            // so thus either item ID or item image URL should be passed, or both
-            // the 4th argument is optional. It's the settings obj. Please check the docs for reference
-            slyce.findSimilar('JKu34SQSxP5PWkaUMXE5w7', binding.item.id, binding.item.image_link, {})
+            // findSimilar accepts Workflow ID of Find Similar workflow to use
+            // 2nd argument is an object of item data. The object can have id or imageUrl properties to identify the target item
+            // also you can pass workflowOptions (which is optional) with key value pairs, like {color: 'red'}
+            slyce.findSimilar('f8GeavK4BbSvtcDYwX7XNY', {id: binding.item.id})
                 .then(response => {
-                    console.log(response.results[0].items);
-                    viewModel.results = response.results[0].items;
+                    console.log(response)
+                    viewModel.results = response.items;
                 })
                 .catch(e => console.error(e));
         },
