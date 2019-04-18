@@ -31,7 +31,7 @@
             // findSimilar accepts Workflow ID of Find Similar workflow to use
             // 2nd argument is an object of item data. The object can have id or imageUrl properties to identify the target item
             // also you can pass workflowOptions (which is optional) with key value pairs, like {color: 'red'}
-            slyce.findSimilar('f8GeavK4BbSvtcDYwX7XNY', {id: binding.item.id, workflowOptions: {}})
+            slyce.findSimilar('f8GeavK4BbSvtcDYwX7XNY', {id: binding.item.id})
                 .then(response => {
                     console.log(response)
                     viewModel.results = response.items;
