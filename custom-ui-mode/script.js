@@ -1,8 +1,8 @@
-(() => {
+(function() {
     const loadingOverlay = document.querySelector('#loading-overlay');
     const cancelButton = document.querySelector('#cancel-workflow-execution');
     const sourceImage = document.querySelector('#source-image');
-    const imageInputs = document.querySelectorAll('.image-source-input');
+    const imageInputs = Array.from(document.querySelectorAll('.image-source-input'));
 
     // Initialize the Slyce SDK
     const slyce = new slyceSDK();
@@ -11,7 +11,7 @@
     slyce.initSlyceSpace('slycedemo', 'L9VT1RPiWGBFgHEAH7hgFGeDnZgdBPWL5aCT3zH0JZ0', 'DiiCp2Y2hLyEwggtX4km84');
 
     // Register a Rivets formatter
-    rivets.formatters.length = (arr) => arr.length;
+    rivets.formatters.length = function(arr){ arr.length };
 
     // An object that would be bound to the UI, changing any of these properties would result in UI rerendering
     let viewModel = {
@@ -32,29 +32,29 @@
             // 2nd argument is an object of item data. The object can have id or imageUrl properties to identify the target item
             // also you can pass workflowOptions (which is optional) with key value pairs, like {color: 'red'}
             slyce.findSimilar('f8GeavK4BbSvtcDYwX7XNY', {id: binding.item.id})
-                .then(response => {
+                .then(function(response) {
                     console.log(response)
                     viewModel.results = response.items;
                 })
-                .catch(e => console.error(e));
+                .catch(function(e){ console.error(e) });
         },
         // Sends all analytics events that SDK has captured since last events dispatch (which happens every 30s) 
         // It's useful to send analytics events manually when you're about to redirect the user to another page 
         // or the user is about to leave the page, so none of events gets lost 
         dispatchAnalyticsEvents: function() {
             slyce.dispatchAnalyticsEvents()
-                .then((response) => {
+                .then(function(response) {
                     console.log(response)
                 })
-                .catch(e => console.error(e));
+                .catch(function(e){ console.error(e) });
         }
     }
     // Bind the object to the page
     rivets.bind(document.getElementById('wrapper'), viewModel);
 
     // Loop through the input elements and bind event handlers
-    imageInputs.forEach((imageInput) => {
-        imageInput.addEventListener('change', (e) => {
+    imageInputs.forEach(function(imageInput) {
+        imageInput.addEventListener('change', function(e) {
             // Fetch the File object from input
             const imageFile = e.target.files[0];
             
@@ -69,7 +69,7 @@
                 slyce.executeWorkflow(imageFile, '8qHmYrvaaVyUyWQMifN2o8', {
                     
                     // This is going to be fired each time the task was updated
-                    onTaskUpdated: (message) => {
+                    onTaskUpdated: function(message) {
                         viewModel.loadingStatus = 'Searching for matches';
 
                         console.log('message: ', message);
@@ -79,7 +79,7 @@
                         }
                     },
                     // This is going to be fired if the workflow has been completed or an error has appeared during the execution
-                    onTaskCompleted: (message, errors) => {
+                    onTaskCompleted: function(message, errors) {
                         viewModel.showResults = true;
 
                         viewModel.errors = errors;
@@ -94,7 +94,7 @@
                     },
                     // This is going to be fired after the SDK processed the File object, rotated the image if needed and image base64 became available
                     // So image can be displayed on the page
-                    afterImageProcessed: (base64) => {
+                    afterImageProcessed: function(base64) {
                         loadingOverlay.style.backgroundImage = 'url(' + base64 + ')';
                         // update source image src attribute with base64
                         viewModel.imageSrc = base64;
@@ -109,7 +109,7 @@
     });
 
     // Go back to the initial View state
-    const resetViewModel = () => {
+    const resetViewModel = function() {
         viewModel.results = [];
         viewModel.tags = [];
         viewModel.errors = [];
